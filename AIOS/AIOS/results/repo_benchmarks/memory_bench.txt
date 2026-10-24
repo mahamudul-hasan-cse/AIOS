@@ -1,0 +1,119 @@
+embeddings: Ollama unreachable at http://localhost:11434 (model 'nomic-embed-text') - falling back to HashingEmbedder (hashing, 256-dim, approximate, vocabulary-overlap only). Similarity will reflect shared vocabulary, not meaning. Start Ollama and `ollama pull nomic-embed-text` for real semantic embeddings.
+==============================================================================
+MEMORY / PAGE-REPLACEMENT BENCHMARK  (synthetic)
+==============================================================================
+base_seed=20260726  seeds=3  pages=20 (4 topics x 5)  ram=50 tokens (~5 resident)  accesses=120
+per-seed variation: page/priming order (corpus) and access ordering; the hand-written paraphrase queries are fixed by construction
+embedder: CachingEmbedder (hashing, 256-dim, approximate, vocabulary-overlap only)
+  !! WARNING: hashing embeddings in use - Semantic-LRU is NOT being
+     fairly evaluated here. Start Ollama + `ollama pull nomic-embed-text`.
+
+paraphrase queries (hand-written) vs their page text:
+    mean Jaccard overlap=0.0094 (max 0.0667), 0.15 shared words per pair
+    lexical-only top-1 accuracy=0 -> word overlap alone CANNOT resolve these queries
+
+--- trace: sequential ---
+    walks every page in order, repeatedly
+    mean unique pages touched: 20.0   |  queries: exact page text
+
+    policy        fault rate (mean+/-sd)  hit ratio (mean+/-sd)  range        retr. acc  topic match
+    ------------  ----------------------  ---------------------  -----------  ---------  -----------
+    fifo          1.0000 +/- 0.0000       0.0000 +/- 0.0000      1.000-1.000  1          1          
+    lru           1.0000 +/- 0.0000       0.0000 +/- 0.0000      1.000-1.000  1          1          
+    semantic_lru  0.9000 +/- 0.0500       0.1000 +/- 0.0500      0.850-0.950  1          1          
+    random        0.9805 +/- 0.0048       0.0195 +/- 0.0048      0.975-0.983  1          1          
+
+    Semantic-LRU vs LRU:  mean margin=+0.1000  (LRU run-to-run sd=0.0000)
+      paired: improvement=+0.1000 +/- 0.0500   better on 3/3 seeds, worse on 0, tied on 0
+      verdict: ROBUST - margin exceeds lru's run-to-run spread; wins on 3/3 seeds, every seed
+
+    CONTROL - Semantic-LRU vs Random eviction:  mean margin=+0.0805  (Random run-to-run sd=0.0048)
+      paired: improvement=+0.0805 +/- 0.0542   better on 3/3 seeds, worse on 0, tied on 0
+      verdict: ROBUST - margin exceeds random's run-to-run spread; wins on 3/3 seeds, every seed
+      => embeddings DO real work: Semantic-LRU beats mere recency-breaking
+
+--- trace: random ---
+    uniformly random page ids (seeded)
+    mean unique pages touched: 20.0   |  queries: exact page text
+
+    policy        fault rate (mean+/-sd)  hit ratio (mean+/-sd)  range        retr. acc  topic match
+    ------------  ----------------------  ---------------------  -----------  ---------  -----------
+    fifo          0.7389 +/- 0.0673       0.2611 +/- 0.0673      0.667-0.800  1          1          
+    lru           0.7556 +/- 0.0699       0.2444 +/- 0.0699      0.675-0.800  1          1          
+    semantic_lru  0.7361 +/- 0.0173       0.2639 +/- 0.0173      0.717-0.750  1          1          
+    random        0.7083 +/- 0.0507       0.2917 +/- 0.0507      0.650-0.742  1          1          
+
+    Semantic-LRU vs LRU:  mean margin=+0.0194  (LRU run-to-run sd=0.0699)
+      paired: improvement=+0.0194 +/- 0.0536   better on 2/3 seeds, worse on 1, tied on 0
+      verdict: WITHIN NOISE - margin is smaller than lru's run-to-run spread and the paired improvement is smaller than its own spread (wins on 2/3 seeds); not a demonstrated win
+
+    CONTROL - Semantic-LRU vs Random eviction:  mean margin=-0.0278  (Random run-to-run sd=0.0507)
+      paired: improvement=-0.0278 +/- 0.0347   better on 0/3 seeds, worse on 2, tied on 1
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+      => embeddings provide NO benefit here: random eviction matches or beats Semantic-LRU
+
+--- trace: looping ---
+    cycles over 8 pages > RAM capacity (classic LRU worst case)
+    mean unique pages touched: 8.0   |  queries: exact page text
+
+    policy        fault rate (mean+/-sd)  hit ratio (mean+/-sd)  range        retr. acc  topic match
+    ------------  ----------------------  ---------------------  -----------  ---------  -----------
+    fifo          1.0000 +/- 0.0000       0.0000 +/- 0.0000      1.000-1.000  1          1          
+    lru           1.0000 +/- 0.0000       0.0000 +/- 0.0000      1.000-1.000  1          1          
+    semantic_lru  0.7194 +/- 0.0603       0.2806 +/- 0.0603      0.650-0.758  1          1          
+    random        0.6722 +/- 0.0268       0.3278 +/- 0.0268      0.642-0.692  1          1          
+
+    Semantic-LRU vs LRU:  mean margin=+0.2806  (LRU run-to-run sd=0.0000)
+      paired: improvement=+0.2806 +/- 0.0603   better on 3/3 seeds, worse on 0, tied on 0
+      verdict: ROBUST - margin exceeds lru's run-to-run spread; wins on 3/3 seeds, every seed
+
+    CONTROL - Semantic-LRU vs Random eviction:  mean margin=-0.0472  (Random run-to-run sd=0.0268)
+      paired: improvement=-0.0472 +/- 0.0347   better on 0/3 seeds, worse on 3, tied on 0
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+      => embeddings provide NO benefit here: random eviction matches or beats Semantic-LRU
+
+--- trace: clustered ---
+    dwells within one topic, then switches - semantic locality
+    mean unique pages touched: 20.0   |  queries: exact page text
+
+    policy        fault rate (mean+/-sd)  hit ratio (mean+/-sd)  range        retr. acc  topic match
+    ------------  ----------------------  ---------------------  -----------  ---------  -----------
+    fifo          0.4861 +/- 0.0419       0.5139 +/- 0.0419      0.442-0.525  1          1          
+    lru           0.4889 +/- 0.0488       0.5111 +/- 0.0488      0.433-0.525  1          1          
+    semantic_lru  0.6028 +/- 0.0614       0.3972 +/- 0.0614      0.533-0.650  1          1          
+    random        0.5195 +/- 0.0542       0.4805 +/- 0.0542      0.467-0.575  1          1          
+
+    Semantic-LRU vs LRU:  mean margin=-0.1139  (LRU run-to-run sd=0.0488)
+      paired: improvement=-0.1139 +/- 0.0966   better on 0/3 seeds, worse on 3, tied on 0
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+
+    CONTROL - Semantic-LRU vs Random eviction:  mean margin=-0.0833  (Random run-to-run sd=0.0542)
+      paired: improvement=-0.0833 +/- 0.0882   better on 0/3 seeds, worse on 3, tied on 0
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+      => embeddings provide NO benefit here: random eviction matches or beats Semantic-LRU
+
+--- trace: paraphrased ---
+    same access order as 'clustered', but queried by hand-written paraphrases with minimal word overlap - only meaning can match
+    mean unique pages touched: 20.0   |  queries: paraphrase
+
+    policy        fault rate (mean+/-sd)  hit ratio (mean+/-sd)  range        retr. acc  topic match
+    ------------  ----------------------  ---------------------  -----------  ---------  -----------
+    fifo          0.3278 +/- 0.0376       0.6722 +/- 0.0376      0.292-0.367  0.0111     0.5111     
+    lru           0.3083 +/- 0.0220       0.6917 +/- 0.0220      0.292-0.333  0.0194     0.5195     
+    semantic_lru  0.4889 +/- 0.0708       0.5111 +/- 0.0708      0.417-0.558  0          0.4972     
+    random        0.3583 +/- 0.0601       0.6417 +/- 0.0601      0.308-0.425  0          0.5222     
+
+    Semantic-LRU vs LRU:  mean margin=-0.1806  (LRU run-to-run sd=0.0220)
+      paired: improvement=-0.1806 +/- 0.0567   better on 0/3 seeds, worse on 3, tied on 0
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+
+    CONTROL - Semantic-LRU vs Random eviction:  mean margin=-0.1306  (Random run-to-run sd=0.0601)
+      paired: improvement=-0.1306 +/- 0.0209   better on 0/3 seeds, worse on 3, tied on 0
+      verdict: NO ADVANTAGE - Semantic-LRU is worse on average (better on only 0/3 seeds)
+      => embeddings provide NO benefit here: random eviction matches or beats Semantic-LRU
+
+wrote /workspace/agentos-work/AgentOS/benchmarks/results/memory.json
+
+real	2m42.001s
+user	1m37.488s
+sys	0m43.402s

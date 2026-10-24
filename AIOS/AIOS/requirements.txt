@@ -1,0 +1,5 @@
+# Harness extras (AgentOS's own requirements.txt is installed separately)
+pandas
+matplotlib
+tabulate
+pytest

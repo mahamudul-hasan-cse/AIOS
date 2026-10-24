@@ -1,0 +1,58 @@
+\documentclass[conference,letterpaper]{IEEEtran}
+% COMPSAC 2027: full paper <= 10 pages incl. refs (+2 paid), DOUBLE-BLIND.
+% Keep author block anonymous and link an anonymized repo (e.g. anonymous.4open.science) for review.
+\usepackage{cite,amsmath,graphicx,booktabs,url,xcolor}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\begin{document}
+\title{AgentOS: An OS-Inspired Syscall Kernel for Governing Multi-Agent LLM Execution}
+\author{\IEEEauthorblockN{Anonymous Author(s)}\IEEEauthorblockA{Anonymous Institution}}
+\maketitle
+
+\begin{abstract}
+\todo{150--200 words: problem (app-layer orchestration scatters permission, quota, memory, logging); idea (agents as processes, every action a syscall through one dispatcher); mechanisms (21 syscalls, ACL+quotas, Banker's avoidance + wait-for-graph detection, ChromaDB-backed paging); evaluation headline numbers (only measured); honest negative result (Semantic-LRU); artifact availability.}
+\end{abstract}
+\begin{IEEEkeywords}
+LLM agents, multi-agent systems, operating systems, system calls, deadlock avoidance, memory paging, governance
+\end{IEEEkeywords}
+
+\section{Introduction}\label{sec:intro}
+\todo{Motivation: multi-agent failures \cite{cemri2025mas}; frameworks \cite{wu2023autogen,hong2024metagpt,langgraph,crewai} govern at app layer. Gap vs.\ AIOS \cite{mei2025aios} and MemGPT \cite{packer2023memgpt}. Contributions C1--C4. RQ1--RQ3.}
+
+\section{Background and Related Work}\label{sec:related}
+\subsection{Multi-agent LLM frameworks}
+\subsection{LLM/agent operating systems}
+\subsection{LLM serving and memory management}
+\todo{\cite{kwon2023vllm,lin2024parrot}; classic OS: \cite{dijkstra1965bankers,belady1966}.}
+
+\section{Design of AgentOS}\label{sec:design}
+\subsection{Threat and trust model}
+\subsection{Syscall interface and dispatcher}
+\todo{ENOSYS-before-EPERM ordering; table of 21 syscalls.}
+\subsection{Scheduling}
+\subsection{Context memory as paged RAM with vector-store swap}
+\subsection{Resources, quotas and deadlock handling}
+\subsection{IPC, filesystem and sandboxed tools}
+\subsection{Record/replay}
+
+\section{Implementation}\label{sec:impl}
+\todo{Python/FastAPI, drivers (Ollama, Groq, DeepSeek, Gemini), ChromaDB, LoC, test count.}
+
+\section{Evaluation}\label{sec:eval}
+\subsection{Setup}
+\todo{Hardware (CPU, RAM, OS), model (e.g.\ qwen2.5:3b via Ollama), seeds, temperature.}
+\subsection{RQ1: Governance overhead}
+\subsection{RQ2: Safety under contention (deadlock, quotas, ACL)}
+\subsection{RQ3: Memory paging policies (incl.\ negative result)}
+\subsection{Case study: researcher--coder--tester--writer pipeline}
+
+\section{Discussion and Limitations}\label{sec:disc}
+\todo{Caller-declared identity, course-grade sandbox, sequential pipeline stages, small scale, LLM nondeterminism.}
+
+\section{Conclusion}\label{sec:concl}
+
+\section*{Acknowledgment}
+\todo{IEEE policy: disclose any AI-generated text/code/figures and which sections.}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+\end{document}

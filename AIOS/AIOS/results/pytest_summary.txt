@@ -1,0 +1,15 @@
+kernel/drivers/gemini_driver.py:3
+  /workspace/agentos-work/AgentOS/kernel/drivers/gemini_driver.py:3: FutureWarning: 
+  
+  All support for the `google.generativeai` package has ended. It will no longer be receiving 
+  updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+  See README for more details:
+  
+  https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+  
+    import google.generativeai as genai
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_api_http.py::test_replay_snapshot_unknown_id_returns_404 - ...
+1 failed, 147 passed, 3 skipped, 1 warning in 8.14s

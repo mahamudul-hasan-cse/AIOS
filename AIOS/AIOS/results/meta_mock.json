@@ -1,0 +1,10 @@
+{
+  "backend": "mock",
+  "model": "DETERMINISTIC MOCK (not an LLM)",
+  "seeds": 3,
+  "tasks": 12,
+  "python": "3.13.5",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+  "cpu_count": 8,
+  "finished": "2026-10-24 15:05:43 +0600"
+}

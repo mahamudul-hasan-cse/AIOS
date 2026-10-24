@@ -1,0 +1,109 @@
+backend,condition,seed,task,wall_ms,llm_calls,driver_ms_total,prompt_tokens,completion_tokens,per_call_latency_ms_mean,kernel_overhead_ms,success,status,passed_exec,syscalls,syscall_ms_total,sandbox_ms,quota_exceeded,syscall_errors,deadlock_scans,deadlocks_found,mem_hits,stdout_head
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T01,24182.5,4,23985.608,975,628,5996.402,76.575,True,completed,True,33,24086.103,23.92,0,0,2,0,0,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T01,28211.81,3,28024.421,842,614,9341.474,96.999,True,completed,True,33,28150.239,28.82,1,0,2,0,0,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,baseline,0,T01,36722.42,4,36700.56,966,750,9175.14,0,True,completed,True,,,21.125,,,,,,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T02,28895.81,3,28710.185,1009,629,9570.062,106.692,False,completed,True,33,28833.417,16.54,1,0,2,0,0,10946 | 
+ollama_qwen2.5-1.5b,baseline,0,T02,29150.66,4,29135.023,1170,731,7283.756,0,False,completed,True,,,14.749,,,,,,10946 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T02,22741.71,4,22617.236,1171,855,5654.309,46.846,False,completed,True,33,22678.232,14.15,0,0,2,0,0,10946 | 
+ollama_qwen2.5-1.5b,baseline,0,T03,21364.2,4,21346.858,1009,807,5336.715,0,True,completed,True,,,16.615,,,,,,3628800 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T03,25313.35,4,25190.173,1305,934,6297.543,63.004,True,completed,True,33,25268.517,15.34,0,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T03,19107.69,3,18992.396,969,554,6330.799,55.982,True,completed,True,33,19063.018,14.64,1,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T04,29094.77,4,28936.004,1323,1071,7234.001,62.689,False,failed,False,32,28998.693,0,0,1,2,0,0,
+ollama_qwen2.5-1.5b,agentos_default,0,T04,22126.52,3,22026.4,1156,836,7342.133,44.635,True,completed,True,33,22085.326,14.29,1,0,2,0,0,The number of prime numbers below 100 is: 25 | 
+ollama_qwen2.5-1.5b,baseline,0,T04,30891.77,4,30866.084,1484,1168,7716.521,0,True,completed,True,,,24.884,,,,,,25 | 46 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T05,20290.62,3,20128.651,1083,709,6709.55,65.993,True,completed,True,33,20234.203,39.56,1,0,2,0,0,sotnega | 
+ollama_qwen2.5-1.5b,baseline,0,T05,21584.47,4,21557.03,888,728,5389.258,0,True,completed,True,,,26.678,,,,,,sotnega | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T05,17570.8,4,17477.913,960,676,4369.478,38.019,False,completed,False,33,17516.092,0.16,0,0,2,0,0,
+ollama_qwen2.5-1.5b,baseline,0,T06,22537.46,4,22517.8,1246,802,5629.45,0,True,completed,True,,,18.864,,,,,,21 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T06,18698.85,4,18540.527,995,685,4635.132,75.561,True,completed,True,33,18631.248,15.16,0,0,2,0,0,21 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T06,17455.06,3,17329.153,973,675,5776.384,45.268,True,completed,True,33,17387.831,13.41,1,0,2,0,0,The GCD of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T07,29541.61,4,29361.498,1473,1080,7340.375,38.208,True,completed,True,33,29478.637,78.93,0,0,2,0,0,The sentence 'operating systems govern agents' contains 9 vowels. | 
+ollama_qwen2.5-1.5b,agentos_default,0,T07,29382.24,3,29233.602,1212,791,9744.534,60.229,True,completed,True,33,29319.701,25.87,1,0,2,0,0,Vowel count: 9 | 
+ollama_qwen2.5-1.5b,baseline,0,T07,28444.96,4,28429.304,1501,1011,7107.326,0,True,completed,True,,,14.815,,,,,,Vowel count: 9 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T08,11272.69,3,11156.283,719,418,3718.761,49.857,True,completed,True,33,11218.77,12.63,1,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,baseline,0,T08,20549.56,4,20530.967,943,820,5132.742,0,False,completed,True,,,17.946,,,,,,None | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T08,19121.81,4,19000.183,973,773,4750.046,59.913,True,completed,True,33,19075.466,15.37,0,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,baseline,0,T09,20421.77,4,20398.235,1092,756,5099.559,0,True,completed,True,,,22.671,,,,,,385 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T09,27026.94,4,26901.388,1234,899,6725.347,55.704,True,completed,True,33,26972.402,15.31,0,0,2,0,0,The sum of the squares of integers from 1 to 10 is: 385 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T09,18188.56,3,18038.385,1079,659,6012.795,62.947,True,completed,True,33,18117.362,16.03,1,0,2,0,0,385 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T10,14970.05,4,14851.51,852,558,3712.878,48.504,True,completed,True,33,14916.025,16.01,0,0,2,0,0,100101 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T10,19016.34,3,18894.179,1218,713,6298.06,47.001,False,completed,False,33,18967.14,25.96,1,0,2,0,0,
+ollama_qwen2.5-1.5b,baseline,0,T10,13913.26,4,13896.166,1006,533,3474.042,0,True,completed,True,,,16.242,,,,,,100101 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T11,16708.82,3,16598.897,896,631,5532.966,39.416,True,completed,True,33,16654.293,15.98,1,0,2,0,0,True | False | 
+ollama_qwen2.5-1.5b,baseline,0,T11,25926.64,4,25924.926,1424,965,6481.232,0,False,completed,False,,,0.921,,,,,,
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T11,24179.59,4,24039.905,1208,774,6009.976,62.153,True,completed,True,33,24118.008,15.95,0,0,2,0,0,True | 
+ollama_qwen2.5-1.5b,baseline,0,T12,28203.12,4,28187.223,1277,1009,7046.806,0,True,completed,True,,,15.042,,,,,,The largest number in the list is: 89 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,0,T12,20381.24,4,20250.619,1101,762,5062.655,41.893,True,completed,True,33,20307.852,15.34,0,0,2,0,0,89 | 
+ollama_qwen2.5-1.5b,agentos_default,0,T12,15827.96,3,15726.839,1011,621,5242.28,35.853,True,completed,True,33,15778.081,15.39,1,0,2,0,0,89 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T01,15649.13,3,15549.458,1136,503,5183.153,29.877,True,completed,True,33,15592.905,13.57,1,0,2,0,0,5050 | 
+ollama_qwen2.5-1.5b,baseline,1,T01,29635.45,4,29617.631,1465,987,7404.408,0,True,completed,True,,,17.04,,,,,,The sum of integers from 1 to 100 is: 5050 | The sum of integers from 1 to 100 usi
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T01,22365.7,4,22269.485,1207,807,5567.371,34.992,True,completed,True,33,22318.037,13.56,0,0,2,0,0,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,baseline,1,T02,19721.28,4,19705.62,984,729,4926.405,0,False,completed,True,,,14.952,,,,,,1 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T02,14987.64,4,14842.889,998,547,3710.722,74.923,False,completed,True,33,14933.192,15.38,0,0,2,0,0,7930904541 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T02,7420.63,3,7301.194,841,273,2433.731,59.632,False,completed,True,33,7374.066,13.24,1,0,2,0,0,1 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T03,21299.19,4,21170.681,1049,720,5292.67,62.871,True,completed,True,33,21252.111,18.56,0,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T03,19177.84,3,19060.913,1095,700,6353.638,42.979,True,completed,True,33,19117.772,13.88,1,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,baseline,1,T03,19420.47,4,19405.147,918,626,4851.287,0,True,completed,True,,,14.544,,,,,,The factorial of 10 is: 3628800 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T04,16565.39,3,16437.599,915,576,5479.2,40.166,True,completed,True,33,16496.416,18.65,1,0,2,0,0,25 prime numbers are below 100. | 
+ollama_qwen2.5-1.5b,baseline,1,T04,21904.13,4,21889.599,1223,798,5472.4,0,True,completed,True,,,13.817,,,,,,Number of prime numbers below 100: 25 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T04,17643.96,4,17518.609,1237,684,4379.652,54.567,True,completed,True,33,17589.047,15.87,0,0,2,0,0,The number of prime numbers below 100 is: 25 | 
+ollama_qwen2.5-1.5b,baseline,1,T05,16625.22,4,16610.238,1032,616,4152.56,0,True,completed,True,,,14.318,,,,,,sotnega | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T05,15393.39,4,15269.877,1051,546,3817.469,51.734,True,completed,True,33,15337.681,16.07,0,0,2,0,0,sotnega | 
+ollama_qwen2.5-1.5b,agentos_default,1,T05,20993.02,3,20876.74,993,673,6958.913,45.693,True,completed,True,33,20944.573,22.14,1,0,2,0,0,sotnega | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T06,26238.55,4,26115.827,1227,761,6528.957,48.103,True,completed,True,33,26191.27,27.34,0,0,2,0,0,The GCD of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T06,19792.85,3,19678.628,1067,740,6559.543,59.372,True,completed,True,33,19751.649,13.65,1,0,2,0,0,The GCD of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,baseline,1,T06,21443.03,4,21421.611,1260,842,5355.403,0,True,completed,True,,,20.655,,,,,,The GCD of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T07,23496.21,3,23360.134,1299,799,7786.711,60.542,True,completed,True,33,23438.005,17.33,1,0,2,0,0,9 | 
+ollama_qwen2.5-1.5b,baseline,1,T07,26798.8,4,26793.949,1182,827,6698.487,0,False,completed,False,,,4.017,,,,,,
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T07,27538.42,4,27418.467,1117,762,6854.617,44.9,True,completed,True,33,27487.627,24.26,0,0,2,0,0,9 | 
+ollama_qwen2.5-1.5b,baseline,1,T08,26421.89,4,26402.589,1123,768,6600.647,0,True,completed,True,,,18.513,,,,,,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T08,12235.61,4,12089.578,1131,444,3022.394,65.985,True,completed,True,33,12168.633,13.07,0,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,agentos_default,1,T08,10379.24,3,10264.65,1011,387,3421.55,50.439,True,completed,True,33,10330.12,15.03,1,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T09,22978.83,4,22865.782,960,861,5716.445,58.727,True,completed,True,33,22937.869,13.36,0,0,2,0,0,385 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T09,20469.63,3,20360.954,1183,774,6786.985,47.627,True,completed,True,33,20424.042,15.46,1,0,2,0,0,The sum of squares from 1 to 10 is: 385 | 
+ollama_qwen2.5-1.5b,baseline,1,T09,24995.01,4,24979.499,1381,948,6244.875,0,True,completed,True,,,14.793,,,,,,Sum of squares from 1 to 10 is: 385 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T10,19842.53,3,19730.099,1101,637,6576.7,54.88,True,completed,True,33,19802.379,17.4,1,0,2,0,0,100101 | 
+ollama_qwen2.5-1.5b,baseline,1,T10,22337.52,4,22321.383,1155,816,5580.346,0,True,completed,True,,,15.436,,,,,,100101 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T10,18742.54,4,18610.013,1047,685,4652.503,53.634,True,completed,True,33,18679.947,16.3,0,0,2,0,0,100101 | 
+ollama_qwen2.5-1.5b,baseline,1,T11,36821.8,4,36796.054,1157,920,9199.013,0,True,completed,True,,,24.916,,,,,,True | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T11,16997.49,4,16843.263,988,621,4210.816,74.257,True,completed,True,33,16938.739,21.22,0,0,2,0,0,True | False | True | 
+ollama_qwen2.5-1.5b,agentos_default,1,T11,15466.04,3,15352.745,792,591,5117.582,39.878,True,completed,True,33,15409.513,16.89,1,0,2,0,0,True | 
+ollama_qwen2.5-1.5b,agentos_relaxed,1,T12,15030.78,4,14892.336,1135,455,3723.084,62.191,True,completed,True,33,14968.517,13.99,0,0,2,0,0,The largest number is: 89 | 
+ollama_qwen2.5-1.5b,agentos_default,1,T12,9627.18,3,9523.677,1021,380,3174.559,42.027,True,completed,True,33,9580.734,15.03,1,0,2,0,0,The largest number is: 89 | 
+ollama_qwen2.5-1.5b,baseline,1,T12,15340.18,4,15314.231,1130,592,3828.558,0,True,completed,True,,,25.096,,,,,,The largest number is: 89 | 
+ollama_qwen2.5-1.5b,baseline,2,T01,20136.36,4,20118.837,1176,718,5029.709,0,True,completed,True,,,16.721,,,,,,5050 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T01,19747.76,4,19636.396,850,659,4909.099,37.196,True,completed,True,33,19687.012,13.42,0,0,2,0,0,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,agentos_default,2,T01,18113.83,3,17965.752,1017,676,5988.584,45.893,True,completed,True,33,18026.746,15.1,1,0,2,0,0,The sum of integers from 1 to 100 is: 5050 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T02,19549.69,4,19437.0,968,704,4859.25,49.715,False,completed,True,33,19504.145,17.43,0,0,2,0,0,The 20th Fibonacci number is: 10946 | 
+ollama_qwen2.5-1.5b,agentos_default,2,T02,14000.94,3,13879.925,782,523,4626.642,64.998,False,completed,True,33,13958.784,13.86,1,0,2,0,0,The 20th Fibonacci number is: 10946 | 
+ollama_qwen2.5-1.5b,baseline,2,T02,17341.74,4,17325.413,958,592,4331.353,0,False,completed,True,,,15.674,,,,,,The 20th Fibonacci number is: 10946 | 
+ollama_qwen2.5-1.5b,agentos_default,2,T03,18951.9,3,18806.958,1156,725,6268.986,49.266,True,completed,True,33,18869.864,13.64,1,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,baseline,2,T03,21102.97,4,21078.097,1186,812,5269.524,0,True,completed,True,,,24.181,,,,,,3628800 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T03,19379.15,4,19253.384,943,738,4813.346,55.729,True,completed,True,33,19323.183,14.07,0,0,2,0,0,3628800 | 
+ollama_qwen2.5-1.5b,baseline,2,T04,26094.08,4,26075.808,1240,986,6518.952,0,True,completed,True,,,17.458,,,,,,25 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T04,33967.51,4,33796.122,1292,1040,8449.03,87.889,True,completed,True,33,33898.381,14.37,0,0,2,0,0,The number of prime numbers below 100 is: 25 | 
+ollama_qwen2.5-1.5b,agentos_default,2,T04,19443.47,3,19338.647,1013,722,6446.216,41.696,True,completed,True,33,19395.332,14.99,1,0,2,0,0,The number of prime numbers below 100 is: 25 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T05,24981.51,4,24882.219,1339,905,6220.555,51.347,False,completed,False,33,24933.725,0.16,0,0,2,0,0,
+ollama_qwen2.5-1.5b,agentos_default,2,T05,14803.73,3,14692.42,964,532,4897.473,46.331,True,completed,True,33,14756.811,18.06,1,0,2,0,0,sotnega | 
+ollama_qwen2.5-1.5b,baseline,2,T05,11291.96,4,11277.815,750,433,2819.454,0,True,completed,True,,,13.474,,,,,,sotnega | 
+ollama_qwen2.5-1.5b,agentos_default,2,T06,18932.21,3,18806.417,1019,686,6268.806,47.786,True,completed,True,33,18872.573,18.37,1,0,2,0,0,The greatest common divisor of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,baseline,2,T06,26580.29,4,26562.27,1270,964,6640.567,0,True,completed,True,,,17.247,,,,,,The GCD of 462 and 1071 is: 21 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T06,23222.49,4,23102.924,1065,802,5775.731,40.028,True,completed,True,33,23161.032,18.08,0,0,2,0,0,21 | 
+ollama_qwen2.5-1.5b,baseline,2,T07,21266.23,4,21251.639,1083,753,5312.91,0,False,completed,True,,,13.764,,,,,,o: 2 | e: 4 | a: 2 | i: 1 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T07,28212.46,4,28091.815,1201,1063,7022.954,56.369,False,completed,True,33,28162.364,14.18,0,0,2,0,0,Input is empty or contains non-alphabetic characters. | 
+ollama_qwen2.5-1.5b,agentos_default,2,T07,18819.46,3,18601.618,931,697,6200.539,97.05,False,completed,True,33,18769.138,70.47,1,0,2,0,0,o: 2 | e: 4 | a: 2 | i: 1 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T08,23368.92,4,23254.139,1260,822,5813.535,50.371,True,completed,True,33,23317.28,12.77,0,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,agentos_default,2,T08,18432.84,3,18336.789,841,613,6112.263,33.395,True,completed,True,33,18384.924,14.74,1,0,2,0,0,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,baseline,2,T08,22605.24,4,22589.663,1296,839,5647.416,0,True,completed,True,,,14.943,,,,,,"[1, 3, 5, 7, 9] | "
+ollama_qwen2.5-1.5b,agentos_default,2,T09,13838.73,3,13728.608,817,533,4576.203,58.58,True,completed,True,33,13803.308,16.12,1,0,2,0,0,385 | 
+ollama_qwen2.5-1.5b,baseline,2,T09,22001.0,4,21983.262,1228,815,5495.816,0,True,completed,True,,,16.977,,,,,,The sum of squares from 1 to 10 is: 385 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T09,25239.64,4,25134.879,1274,914,6283.72,52.524,True,completed,True,33,25204.494,17.09,0,0,2,0,0,The sum of squares from 1 to 10 is: 385 | 
+ollama_qwen2.5-1.5b,baseline,2,T10,25052.56,4,25036.895,1233,928,6259.224,0,True,completed,True,,,14.948,,,,,,100101 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T10,18258.93,4,18143.131,903,602,4535.783,45.945,True,completed,True,33,18202.006,12.93,0,0,2,0,0,100101 | 
+ollama_qwen2.5-1.5b,agentos_default,2,T10,19198.1,3,19091.056,1126,737,6363.685,43.413,True,completed,True,33,19151.729,17.26,1,0,2,0,0,100101 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T11,21447.78,4,21343.353,1078,843,5335.838,42.87,True,completed,True,33,21405.333,19.11,0,0,2,0,0,True | 
+ollama_qwen2.5-1.5b,agentos_default,2,T11,18824.43,3,18705.547,968,666,6235.182,51.316,True,completed,True,33,18773.002,16.14,1,0,2,0,0,True | 
+ollama_qwen2.5-1.5b,baseline,2,T11,25393.46,4,25365.474,1182,865,6341.369,0,True,completed,True,,,27.185,,,,,,True | 
+ollama_qwen2.5-1.5b,agentos_default,2,T12,16765.49,3,16658.423,930,552,5552.808,46.883,True,completed,True,33,16722.866,17.56,1,0,2,0,0,89 | 
+ollama_qwen2.5-1.5b,baseline,2,T12,22317.12,4,22293.717,1016,684,5573.429,0,True,completed,True,,,22.614,,,,,,89 | 
+ollama_qwen2.5-1.5b,agentos_relaxed,2,T12,17942.45,4,17784.145,1018,610,4446.036,65.148,True,completed,True,33,17862.754,13.46,0,0,2,0,0,89 | 

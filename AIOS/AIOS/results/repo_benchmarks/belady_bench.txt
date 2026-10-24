@@ -1,0 +1,91 @@
+embeddings: Ollama unreachable at http://localhost:11434 (model 'nomic-embed-text') - falling back to HashingEmbedder (hashing, 256-dim, approximate, vocabulary-overlap only). Similarity will reflect shared vocabulary, not meaning. Start Ollama and `ollama pull nomic-embed-text` for real semantic embeddings.
+================================================================================
+BELADY'S ANOMALY
+================================================================================
+
+1. CANONICAL REFERENCE STRING [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+   (cold start, deterministic; published: FIFO 9->10, LRU 10->8)
+
+    policy        3 frames  4 frames  delta  anomaly?
+    ------------  --------  --------  -----  --------
+    fifo          9         10        +1     YES     
+    lru           10        8         -2     no      
+    semantic_lru  8         7         -1     no      
+    random        9         8         -1     no      
+
+    fifo matches the published counts: YES
+    lru matches the published counts: YES
+
+    sweep simulator reproduces the real PageManager (deterministic policies): NO -> {'fifo': True, 'lru': True, 'semantic_lru': False}
+      (random excluded from the check: seeded RNG, real 9/8 vs sim 10/6 - draw order differs between implementations, not semantics)
+      !! the sweep below therefore does NOT necessarily describe the
+         real implementation - treat it as unvalidated
+
+================================================================================
+2. CAPACITY SWEEP  frames 2-10, 10 seeds, 60 accesses
+================================================================================
+
+--- trace: sequential --- (mean fault rate by frames)
+    policy        2      3      4      5      6      7      8      9      10   
+    ------------  -----  -----  -----  -----  -----  -----  -----  -----  -----
+    fifo          1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000
+    lru           1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000
+    semantic_lru  1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000
+    random        1.000  1.000  0.995  0.988  0.982  0.955  0.942  0.885  0.872
+
+--- trace: random --- (mean fault rate by frames)
+    policy        2      3      4      5      6      7      8      9      10   
+    ------------  -----  -----  -----  -----  -----  -----  -----  -----  -----
+    fifo          0.895  0.855  0.815  0.757  0.722  0.665  0.625  0.595  0.543
+    lru           0.895  0.852  0.822  0.773  0.715  0.663  0.613  0.567  0.535
+    semantic_lru  0.905  0.858  0.793  0.743  0.693  0.663  0.627  0.593  0.562
+    random        0.897  0.853  0.788  0.770  0.700  0.673  0.622  0.585  0.547
+
+--- trace: looping --- (mean fault rate by frames)
+    policy        2      3      4      5      6      7      8      9      10   
+    ------------  -----  -----  -----  -----  -----  -----  -----  -----  -----
+    fifo          1.000  1.000  1.000  1.000  1.000  1.000  0.133  0.133  0.133
+    lru           1.000  1.000  1.000  1.000  1.000  1.000  0.133  0.133  0.133
+    semantic_lru  1.000  0.978  0.938  0.860  0.672  0.403  0.133  0.133  0.133
+    random        1.000  0.928  0.825  0.720  0.537  0.348  0.133  0.133  0.133
+
+--- trace: clustered --- (mean fault rate by frames)
+    policy        2      3      4      5      6      7      8      9      10   
+    ------------  -----  -----  -----  -----  -----  -----  -----  -----  -----
+    fifo          0.697  0.595  0.533  0.512  0.498  0.462  0.425  0.412  0.375
+    lru           0.708  0.588  0.533  0.495  0.483  0.457  0.428  0.403  0.385
+    semantic_lru  0.712  0.625  0.567  0.522  0.492  0.460  0.428  0.415  0.380
+    random        0.742  0.647  0.585  0.552  0.500  0.458  0.447  0.410  0.375
+
+--- trace: paraphrased --- (mean fault rate by frames)
+    policy        2      3      4      5      6      7      8      9      10   
+    ------------  -----  -----  -----  -----  -----  -----  -----  -----  -----
+    fifo          0.697  0.595  0.533  0.512  0.498  0.462  0.425  0.412  0.375
+    lru           0.708  0.588  0.533  0.495  0.483  0.457  0.428  0.403  0.385
+    semantic_lru  0.702  0.623  0.553  0.522  0.498  0.467  0.435  0.417  0.390
+    random        0.742  0.647  0.585  0.552  0.500  0.458  0.447  0.410  0.375
+
+================================================================================
+3. ANOMALIES DETECTED (more frames -> higher mean fault rate)
+================================================================================
+    none
+
+    LRU: no anomaly at any capacity step (consistent with the
+         stack-algorithm proof - a good sign the harness is sound)
+    fifo: no systematic anomaly
+    semantic_lru: no systematic anomaly
+    random: no systematic anomaly
+
+================================================================================
+ARTIFACTS
+================================================================================
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady.json
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady_sequential.png
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady_random.png
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady_looping.png
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady_clustered.png
+  /workspace/agentos-work/AgentOS/benchmarks/results/belady_paraphrased.png
+
+real	0m4.716s
+user	0m4.522s
+sys	0m0.695s

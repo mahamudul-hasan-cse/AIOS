@@ -1,0 +1,5 @@
+CPU: Intel(R) Xeon(R) Processor x 8 vCPU
+Mem:            15Gi        11Gi       440Mi       211Mi       4.5Gi       4.4Gi
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+Python 3.13.5
+ollama version is 0.40.10
